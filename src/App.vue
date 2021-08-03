@@ -68,16 +68,28 @@ h1 {
   justify-content: center;
   flex-grow: 1;
   align-items: center;
-  border: 1px solid red;
   max-width: 70%;
   margin-inline: auto;
   padding: 30px;
+  margin-bottom: 50px;
+  position: relative;
 }
 .container :where(.question) {
   font-size: 1.8rem;
-  margin: 5px;
+  margin-block: 10px 20px;
   font-weight: bold;
   letter-spacing: 1px;
+  position: relative;
+}
+.container .question::after {
+  content: "";
+  height: 3px;
+  background: linear-gradient(to right, orange, red);
+  background-size: 150%;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -5px;
 }
 .container :is(.question, .answers, .submit-btn) {
   line-height: 1.6;
@@ -89,21 +101,39 @@ h1 {
   flex-wrap: wrap;
 }
 .answer {
-  border: 1px solid red;
   padding: 5px;
   padding-inline: 30px;
   margin: 5px;
   cursor: pointer;
-  border-radius: 5px;
+  background: #1c1d23;
   text-align: center;
   font-size: 1.3rem;
+  position: relative;
+  background-clip: padding-box;
+  border-style: solid;
+  border-width: 3px;
+  border-image: linear-gradient(to right, orange, red) 1;
 }
-.answers .answer:focus,
-.answers .answer:active {
-  border: 1px solid yellow !important;
-}
+/* .answer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  margin: -2px; /* 
+  border-radius: inherit; /* 
+  background: linear-gradient(to right, orange, red);
+} */
+
 .answers .answer:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
+  background: linear-gradient(to right, orange, red);
+}
+.answers .borderNone {
+  border: none !important;
+  outline: none !important;
+  background-color: transparent;
+  padding: 8px;
+  padding-inline: 33px;
 }
 button {
   all: unset;

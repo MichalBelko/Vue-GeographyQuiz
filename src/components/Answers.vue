@@ -37,6 +37,7 @@
         ban: hideCssPointer,
         correctAnswer: answer.correct && displayShowCorrectAnswer,
         incorrectAnswer: !answer.correct && displayShowCorrectAnswer,
+        borderNone: displayShowCorrectAnswer,
       }"
       @click="clickOnAnswer($event)"
     >
@@ -69,13 +70,15 @@ export default {
     ...mapMutations(["getData"]),
     ...mapActions(["fetchData", "moreScore", "next"]),
     clickOnAnswer(e) {
+      store.state.showCorrectAnswer = true;
+      store.state.showNextButton = true;
       const element = e.target;
       const el = this.answers.find((el) => {
         return el.correct;
       });
-
       store.state.hidePointer = true;
-      if (e.target.innerHTML === el.answered && !store.state.showNextButton) {
+
+      if (e.target.innerHTML === el.answered) {
         this.moreScore();
       }
     },
@@ -100,7 +103,7 @@ export default {
           correct: false,
         };
     });
-    if (store.state.showSubmitButton && store.state.hidePointer == false) {
+    if (store.state.hidePointer == false) {
       this.answers = _.shuffle(newAnswers);
     }
   },

@@ -4,14 +4,12 @@ const _ = require("lodash");
 export default createStore({
   state: {
     questions: [],
-    allAnswers: [],
     correctAnswers: [],
     incorrectAnswers: [],
     index: 0,
     isStarted: false,
     score: 0,
     showNextButton: false,
-    showSubmitButton: true,
     playAgain: false,
     showCorrectAnswer: false,
     showScore: false,
@@ -48,17 +46,17 @@ export default createStore({
       state.playAgain = false;
       commit("start_game");
     },
-    submit({ state, commit }) {
-      state.showNextButton = true;
-      state.hidePointer = false;
-      state.showCorrectAnswer = true;
-      state.showSubmitButton = false;
-      commit("submitButton");
-    },
+    // submit({ state, commit }) {
+    //   state.showNextButton = true;
+    //   state.hidePointer = false;
+    //   state.showCorrectAnswer = true;
+    //   state.showSubmitButton = false;
+    //   commit("submitButton");
+    // },
     next({ state, commit }) {
       state.showNextButton = false;
       state.showCorrectAnswer = false;
-      state.showSubmitButton = true;
+      state.hidePointer = false;
       state.index++;
       if (state.index === 10) {
         state.isStarted = false;
@@ -81,9 +79,6 @@ export default createStore({
     },
     start_game(state) {
       return state.isStarted;
-    },
-    submitButton(state) {
-      return state.showSubmitButton;
     },
     nextButton(state) {
       return state.showNextButton;
