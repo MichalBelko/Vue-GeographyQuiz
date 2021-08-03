@@ -80,6 +80,8 @@ h1 {
   font-weight: bold;
   letter-spacing: 1px;
   position: relative;
+  text-align: center;
+  text-align-last: center;
 }
 .container .question::after {
   content: "";
@@ -137,21 +139,30 @@ h1 {
 }
 button {
   all: unset;
-  outline: 1px solid #1c1d23;
+  outline: 2px solid #1c1d23;
   padding: 10px 25px;
-  background-color: #ff0000;
-  outline-offset: -5px;
+  background: linear-gradient(to right, orange, red);
+  outline-offset: 0px;
   margin-block-start: 30px;
   cursor: pointer;
   line-height: 1.6;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 300ms;
+}
+button:hover {
+  outline-offset: -5px;
 }
 .score {
-  font-weight: bold;
   letter-spacing: 1px;
   text-align: center;
   font-size: 1.5rem;
   padding: 20px;
-  align-items: center;
+  margin-inline: auto;
+}
+.score:first-child {
+  font-weight: bold;
 }
 .ban {
   pointer-events: none;
@@ -175,5 +186,40 @@ button {
 .answers .correctAnswer:focus,
 .answers .incorrectAnswer:focus {
   border: none;
+}
+@media screen and (max-width: 800px) {
+  .details .score {
+    padding: 0 10px;
+    margin-block-start: 40px;
+  }
+  h1 {
+    background-size: 100%;
+    font-size: 45px;
+    padding: 0 20px;
+  }
+  .question {
+    font-size: 1.3rem;
+  }
+  .container {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 430px) {
+  .container {
+    padding: 0;
+  }
+  .answer {
+    font-size: 1.1rem;
+  }
+  .question {
+    font-size: 1.2rem;
+    margin-inline: 10px;
+  }
+  .score {
+    font-size: 1.3rem;
+  }
+  .button {
+    font-size: 1.1rem;
+  }
 }
 </style>
